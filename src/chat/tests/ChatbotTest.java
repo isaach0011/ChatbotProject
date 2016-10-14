@@ -9,7 +9,7 @@ import chat.model.Chatbot;
 
 /**
  * Class designed for testing the Chatbot object with JUnit. 
- * @author Cody Henrichsen
+ * @author Isaac Hill
  * @version 1.5
  */
 public class ChatbotTest
