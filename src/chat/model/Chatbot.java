@@ -29,7 +29,24 @@ public class Chatbot
 	
 	private void buildMemesList()
 	{
-		
+		memesList.add("doge");
+		memesList.add("cute animals");
+		memesList.add("grumpy cat");
+		memesList.add("dat boi");
+		memesList.add("willy wonka");
+		memesList.add("harambe");
+		memesList.add("john cena");
+		memesList.add("pawn stars");
+		memesList.add("pepe");
+		memesList.add("ken bone");
+		memesList.add("bad luck brian");
+		memesList.add("michael phelps");
+		memesList.add("sponge bob");
+		memesList.add("pope");
+		memesList.add("arthur");
+		memesList.add("danny phantom");
+		memesList.add("boi");
+		memesList.add("boy and girl");
 	}
 	
 	private void buildPoliticalTopicsList()
@@ -86,7 +103,7 @@ public class Chatbot
 	 */
 	public String getUserName()
 	{
-		return userName;
+		return null;
 	}
 	
 	/**
