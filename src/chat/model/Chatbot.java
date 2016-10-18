@@ -23,8 +23,10 @@ public class Chatbot
 	{
 		this.memesList = new ArrayList<String>();
 		this.politicalTopicList = new ArrayList<String>();
-		this.userName = new String(userName);
+		this.userName = userName;
 		this.content = new String("hjbvghfvchgvghv hg");
+		this.buildMemesList();
+		this.buildPoliticalTopicsList();
 	}
 	
 	private void buildMemesList()
@@ -41,7 +43,7 @@ public class Chatbot
 		memesList.add("ken bone");
 		memesList.add("bad luck brian");
 		memesList.add("michael phelps");
-		memesList.add("sponge bob");
+		memesList.add("spongebob");
 		memesList.add("pope");
 		memesList.add("arthur");
 		memesList.add("danny phantom");
