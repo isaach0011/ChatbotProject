@@ -19,7 +19,7 @@ public class ChatController
 		
 		while(stupidBot.lengthChecker(response))
 		{
-			
+			response = chatView.collectResponse("What do you want to talk about today??????");
 		}
 	}
 }
