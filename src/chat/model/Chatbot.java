@@ -46,7 +46,8 @@ public class Chatbot
 		memesList.add("arthur");
 		memesList.add("danny phantom");
 		memesList.add("boi");
-		memesList.add("boy and girl");
+		memesList.add("battlefield 1");
+		memesList.add("icup");
 	}
 	
 	private void buildPoliticalTopicsList()
@@ -62,7 +63,14 @@ public class Chatbot
 	 */
 	public boolean lengthChecker(String currentInput)
 	{
-		return false;
+		boolean hasLength = false;
+		
+		if (currentInput != null && currentInput.length() > 0)
+		{
+			hasLength = true;
+		}
+		
+		return hasLength; 
 	}
 	
 	/**
