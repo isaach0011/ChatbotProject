@@ -70,7 +70,7 @@ public class Chatbot
 		politicalTopicList.add("Washington");
 		politicalTopicList.add("Lincoln");
 		politicalTopicList.add("Jackson");
-		politicalTopicList.add("Johnson");
+		politicalTopicList.add("Romney");
 		politicalTopicList.add("McCain");
 	}
 	
@@ -99,7 +99,14 @@ public class Chatbot
 	 */
 	public boolean contentChecker(String currentInput)
 	{
-		return false;
+		boolean hasContent = false;
+		
+		if (currentInput.contains(content))
+		{
+			hasContent = true;
+		}
+		
+		return hasContent;
 	}
 	
 	/**
@@ -110,7 +117,17 @@ public class Chatbot
 	 */
 	public boolean politicalTopicChecker(String currentInput)
 	{
-		return false;
+		boolean hasPoliticalTopic = false;
+		int index;
+		
+		for (index = 0; index > 18; index++)
+		{
+			if (currentInput.equalsIgnoreCase(politicalTopicList.get(index)))
+			{
+				hasPoliticalTopic = true;
+			}
+		}
+		return hasPoliticalTopic;
 	}
 	
 	
@@ -121,6 +138,7 @@ public class Chatbot
 	 */
 	public boolean memeChecker(String currentInput)
 	{
+		//need loops and equalsignorecase
 		return false;
 	}
 	
