@@ -21,7 +21,7 @@ public class ChatController
 		while(stupidBot.lengthChecker(response))
 		{
 			chatView.displayMessage(useChatbotCheckers(response));
-			response = chatView.collectResponse("Oh, you are intrested in " + response + " ?");
+			response = chatView.collectResponse("Oh, you are intrested in " + response + "?");
 		}
 	}
 	
@@ -37,12 +37,14 @@ public class ChatController
 		{
 			answer += "\nI can has memes?\n";
 		}
-		
-		if(input.length() == 0)
+		if(stupidBot.politicalTopicChecker(input))
+		{
+			answer += "\nEwww, politics.";
+		}
+		if(answer.length() == 0)
 		{
 			answer += "Sorry, I don't know about " + input;
 		}
-		
 		return answer;
 	}
 }
