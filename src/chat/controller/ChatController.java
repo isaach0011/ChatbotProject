@@ -39,7 +39,7 @@ public class ChatController
 		}
 		if(stupidBot.politicalTopicChecker(input))
 		{
-			answer += "\nEwww, politics.";
+			answer += "\nBork bork bork politics bork bork.";
 		}
 		if(answer.length() == 0)
 		{
