@@ -10,7 +10,7 @@ public class ChatController
 	
 	public ChatController()
 	{
-		stupidBot = new Chatbot("Mr. Henrichsen");
+		stupidBot = new Chatbot("Dogebot");
 		chatView = new ChatViewer();
 	}
 	
@@ -43,7 +43,7 @@ public class ChatController
 		}
 		if(answer.length() == 0)
 		{
-			answer += "Sorry, I don't know about " + input;
+			answer += "Sorry, I don't know about " + input + ".";
 		}
 		return answer;
 	}
