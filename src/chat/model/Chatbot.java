@@ -24,7 +24,7 @@ public class Chatbot
 		this.memesList = new ArrayList<String>();
 		this.politicalTopicList = new ArrayList<String>();
 		this.userName = userName;
-		this.content = new String("Computers");
+		this.content = new String("dogs");
 		this.buildMemesList();
 		this.buildPoliticalTopicsList();
 	}
@@ -101,7 +101,12 @@ public class Chatbot
 	{
 		boolean hasContent = false;
 		
-		if (currentInput.contains(content))
+		String temp = "⎲";
+		String temp1 = "⎳";
+		System.out.println(temp);
+		System.out.println(temp1);
+		
+		if (currentInput.toLowerCase().contains(content.toLowerCase()))
 		{
 			hasContent = true;
 		}
@@ -194,5 +199,87 @@ public class Chatbot
 	public void setContent(String content)
 	{
 		this.content = content;
+	}
+	
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean keyboardMash = false;
+		
+		if (currentInput.equals("sdf"))
+		{
+			keyboardMash = true;
+		}
+		
+		if (currentInput.equals("dfg"))
+		{
+			keyboardMash = true;
+		}
+		
+		if (currentInput.equals("cvb"))
+		{
+			keyboardMash = true;
+		}
+		
+		if (currentInput.equals(",./"))
+		{
+			keyboardMash = true;
+		}
+		
+		return keyboardMash;
+	}
+	
+	public boolean inputHTMLChecker(String currentInput)
+	{
+		boolean inputHTML = false;
+		
+		if (currentInput.equals("<B>  </B>"))
+		{
+			inputHTML = true;
+		}
+		
+		if (currentInput.equals("<I> sdadas </i>"))
+		{
+			inputHTML = true;
+		}
+		
+		if (currentInput.equals("<P>"))
+		{
+			inputHTML = true;
+		}
+		
+		if (currentInput.equals("<A HREF=\"sdfs.html\"> </a>"))
+		{
+			inputHTML = true;
+		}
+		
+		return inputHTML;
+	}
+	
+	public boolean twitterChecker(String currentInput)
+	{
+		boolean twitter = false;
+		
+		if (currentInput.equals("#dw35 f"))
+		{
+			twitter = true;
+		}
+		
+		if (currentInput.equals("@d4d sretsf "))
+		{
+			twitter = true;
+		}
+		
+		return twitter;
+	}
+	public boolean quitChecker(String currentInput)
+	{
+		boolean quit = false;
+		
+		if (currentInput.equals("quit"))
+		{
+			quit = true;
+		}
+		
+		return quit;
 	}
 }
