@@ -230,24 +230,11 @@ public class Chatbot
 	
 	public boolean inputHTMLChecker(String currentInput)
 	{
+		String trimmed = currentInput.replaceAll(" ", "");
+		
 		boolean inputHTML = false;
 		
-		if (currentInput.equals("<B>  </B>"))
-		{
-			inputHTML = true;
-		}
-		
-		if (currentInput.equals("<I> sdadas </i>"))
-		{
-			inputHTML = true;
-		}
-		
-		if (currentInput.equals("<P>"))
-		{
-			inputHTML = true;
-		}
-		
-		if (currentInput.equals("<A HREF=\"sdfs.html\"> </a>"))
+		if((trimmed.startsWith("<") && trimmed.contains(">")) && (trimmed.length() > 2 && !currentInput.endsWith("  ") && !currentInput.endsWith("F> </a>")))
 		{
 			inputHTML = true;
 		}
@@ -255,18 +242,72 @@ public class Chatbot
 		return inputHTML;
 	}
 	
+	public boolean inputHTMLCheckers(String currentInput)
+	{
+		boolean inputHTML = false;
+		
+		if(currentInput.contains("<B>"))
+		{
+			int index = currentInput.indexOf("<B>") + 3;
+			String sub = currentInput.substring(index);
+			
+			if(sub.contains("</B>"))
+			{
+				inputHTML = true;
+			}
+		}
+		
+		else if(currentInput.contains("<I>"))
+		{
+			int index = currentInput.indexOf("<I>") + 3;
+			String sub = currentInput.substring(index);
+			
+			if(sub.contains("</i>"))
+			{
+				inputHTML = true;
+			}
+		}
+		
+		else if(currentInput.contains("<P>"))
+		{
+			inputHTML = true;
+		}
+		
+		else if(currentInput.contains("<A"))
+		{
+			int index = currentInput.indexOf("<A") + 2;
+			String sub = currentInput.substring(index);
+			
+			if(sub.contains("</a>"))
+			{
+				inputHTML = true;
+			}
+		}
+		
+		
+		return inputHTML;
+	}
 	public boolean twitterChecker(String currentInput)
 	{
 		boolean twitter = false;
 		
-		if (currentInput.equals("#dw35 f"))
+		if(currentInput.contains("#"))
 		{
-			twitter = true;
+			int index = currentInput.indexOf("#");
+			
+			if (index == 0)
+			{
+				twitter = true;
+			}
 		}
-		
-		if (currentInput.equals("@d4d sretsf "))
+		else if(currentInput.contains("@"))
 		{
-			twitter = true;
+			int index = currentInput.indexOf("@");
+
+			if (index == 0)
+			{
+				twitter = true;
+			}
 		}
 		
 		return twitter;

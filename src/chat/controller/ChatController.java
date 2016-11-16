@@ -1,31 +1,34 @@
 package chat.controller;
 
 import chat.model.Chatbot;
+import chat.view.ChatFrame;
 import chat.view.ChatViewer;
 
 public class ChatController
 {
 	private Chatbot stupidBot;
 	private ChatViewer chatView;
+	private ChatFrame baseFrame;
 	
 	public ChatController()
 	{
 		stupidBot = new Chatbot("Dogebot");
 		chatView = new ChatViewer();
+		baseFrame = new ChatFrame(this);
 	}
 	
 	public void start()
 	{
-		String response = chatView.collectResponse("What do you want to talk about today????");
+//		String response = chatView.collectResponse("What do you want to talk about today????");
 		
-		while(stupidBot.lengthChecker(response))
-		{
-			chatView.displayMessage(useChatbotCheckers(response));
-			response = chatView.collectResponse("Oh, you are intrested in " + response + "?");
-		}
+//		while(stupidBot.lengthChecker(response))
+//		{
+//			chatView.displayMessage(useChatbotCheckers(response));
+//			response = chatView.collectResponse("Oh, you are intrested in " + response + "?");
+//		}
 	}
 	
-	private String useChatbotCheckers(String input)
+	public String useChatbotCheckers(String input)
 	{
 		String answer = "";
 		
@@ -41,7 +44,7 @@ public class ChatController
 		{
 			answer += "\nBork bork bork politics bork bork. ";
 		}
-		if(answer.length() == 0)
+		if(!stupidBot.lengthChecker(answer))
 		{
 			answer += "Sorry, I don't know about " + input + ".";
 		}
