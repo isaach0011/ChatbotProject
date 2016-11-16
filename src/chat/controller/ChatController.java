@@ -48,6 +48,24 @@ public class ChatController
 		{
 			answer += "Sorry, I don't know about " + input + ".";
 		}
+		if(stupidBot.inputHTMLChecker(input))
+		{
+			answer += "Are you on the right program????";
+		}
+		if(stupidBot.twitterChecker(input))
+		{
+			answer += "Uh.. wrong program.....";
+		}
 		return answer;
+	}
+
+	public Chatbot getChatbot()
+	{
+		return stupidBot;
+	}
+	
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
 	}
 }

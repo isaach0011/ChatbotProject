@@ -227,22 +227,8 @@ public class Chatbot
 		
 		return keyboardMash;
 	}
-	
+
 	public boolean inputHTMLChecker(String currentInput)
-	{
-		String trimmed = currentInput.replaceAll(" ", "");
-		
-		boolean inputHTML = false;
-		
-		if((trimmed.startsWith("<") && trimmed.contains(">")) && (trimmed.length() > 2 && !currentInput.endsWith("  ") && !currentInput.endsWith("F> </a>")))
-		{
-			inputHTML = true;
-		}
-		
-		return inputHTML;
-	}
-	
-	public boolean inputHTMLCheckers(String currentInput)
 	{
 		boolean inputHTML = false;
 		
@@ -273,14 +259,20 @@ public class Chatbot
 			inputHTML = true;
 		}
 		
-		else if(currentInput.contains("<A"))
+		else if(currentInput.contains("<A HREF>\""))
 		{
-			int index = currentInput.indexOf("<A") + 2;
+			int index = currentInput.indexOf("<A HREF>\"") + 9;
 			String sub = currentInput.substring(index);
 			
-			if(sub.contains("</a>"))
+			if(sub.contains("\">"))
 			{
-				inputHTML = true;
+				int index2 = currentInput.indexOf("\">");
+				String sub2 = currentInput.substring(index2);
+				
+				if(sub2.contains("</a>"))
+				{
+					inputHTML = true;
+				}
 			}
 		}
 		
@@ -294,10 +286,14 @@ public class Chatbot
 		if(currentInput.contains("#"))
 		{
 			int index = currentInput.indexOf("#");
+			String sub = currentInput.substring(index + 1);
 			
 			if (index == 0)
 			{
-				twitter = true;
+				if(currentInput.substring(index).length() <= 1)
+				{
+					twitter = true;
+				}
 			}
 		}
 		else if(currentInput.contains("@"))
