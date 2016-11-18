@@ -56,9 +56,52 @@ public class ChatController
 		{
 			answer += "Uh.. wrong program.....";
 		}
+		
+		int canBeRandom = (int) (Math.random() * 7);
+		if(canBeRandom % 7 == 0)
+		{
+			answer += randomTopicGenerator();
+		}
+		
 		return answer;
 	}
-
+	private String randomTopicGenerator()
+	{
+		String randomTopic = "";
+		int random = (int) (Math.random() * 7);
+		
+		switch(random)
+		{
+			case 0:
+				randomTopic = "Did you hear about that one thing?";
+				break;
+			case 1:
+				randomTopic = "How is your day going?";
+				break;
+			case 2:
+				randomTopic = "Oh.. It's you...";
+				break;
+			case 3:
+				randomTopic = "You are a pretty cool dude.";
+				break;
+			case 4:
+				randomTopic = "NEATO";
+				break;
+			case 5:
+				randomTopic = "...";
+				break;
+			case 6:
+				randomTopic = "I don't like this game.";
+				break;
+			default:
+				randomTopic = "NICE";
+				break;
+		}
+		
+		return randomTopic;
+			
+	}
+	
 	public Chatbot getChatbot()
 	{
 		return stupidBot;

@@ -259,15 +259,15 @@ public class Chatbot
 			inputHTML = true;
 		}
 		
-		else if(currentInput.contains("<A HREF>\""))
+		else if(currentInput.contains("<A HREF=\""))
 		{
-			int index = currentInput.indexOf("<A HREF>\"") + 9;
+			int index = currentInput.indexOf("<A HREF=\"") + 9;
 			String sub = currentInput.substring(index);
 			
 			if(sub.contains("\">"))
 			{
-				int index2 = currentInput.indexOf("\">");
-				String sub2 = currentInput.substring(index2);
+				int index2 = sub.indexOf("\">");
+				String sub2 = sub.substring(index2);
 				
 				if(sub2.contains("</a>"))
 				{
@@ -288,9 +288,9 @@ public class Chatbot
 			int index = currentInput.indexOf("#");
 			String sub = currentInput.substring(index + 1);
 			
-			if (index == 0)
+			if(index == 0)
 			{
-				if(currentInput.substring(index).length() <= 1)
+				if(sub.length() >= 1)
 				{
 					twitter = true;
 				}
@@ -299,10 +299,14 @@ public class Chatbot
 		else if(currentInput.contains("@"))
 		{
 			int index = currentInput.indexOf("@");
-
-			if (index == 0)
+			String sub = currentInput.substring(index +1);
+			
+			if(index == 0)
 			{
-				twitter = true;
+				if (sub.length() >= 1)
+				{
+					twitter = true;
+				}
 			}
 		}
 		
