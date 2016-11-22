@@ -228,7 +228,7 @@ public class Chatbot
 		return keyboardMash;
 	}
 
-	public boolean inputHTMLChecker(String currentInput)
+	public boolean inputHTMLCheckers(String currentInput)
 	{
 		boolean inputHTML = false;
 		
@@ -279,6 +279,35 @@ public class Chatbot
 		
 		return inputHTML;
 	}
+	
+	public boolean inputHTMLChecker(String currentInput)
+	{
+		boolean inputHTML = false;
+		
+		if(currentInput.contains("<"))
+		{
+			int index = currentInput.indexOf("<") + 1;
+			
+			String HTMLTag = currentInput.substring(index, index + 1);
+			index += 1;
+			String sub = currentInput.substring(index, index + 1);
+			
+			if(sub.contains(">"))
+			{
+				 int index2 = currentInput.indexOf(">") + 1;
+				 String sub2 = currentInput.substring(index2);
+				 
+				 if(sub2.contains("</" + HTMLTag + ">"));
+				 {
+					 inputHTML = true;
+				 }
+			}
+		}
+		
+		
+		return inputHTML;
+	}
+	
 	public boolean twitterChecker(String currentInput)
 	{
 		boolean twitter = false;
