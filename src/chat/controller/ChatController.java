@@ -12,7 +12,7 @@ public class ChatController
 	
 	public ChatController()
 	{
-		stupidBot = new Chatbot("Dogebot");
+		stupidBot = new Chatbot("Chatbot");
 		chatView = new ChatViewer();
 		baseFrame = new ChatFrame(this);
 	}
@@ -32,35 +32,43 @@ public class ChatController
 	{
 		String answer = "";
 		
-		if(stupidBot.contentChecker(input))
+		if(!stupidBot.quitChecker(input))
 		{
-			answer += "\nYou know my special secret\n";
-		}
-		if(stupidBot.memeChecker(input))
-		{
-			answer += "\nI can has memes?\n";
-		}
-		if(stupidBot.politicalTopicChecker(input))
-		{
-			answer += "\nBork bork bork politics bork bork. ";
-		}
-		if(!stupidBot.lengthChecker(answer))
-		{
-			answer += "Sorry, I don't know about " + input + ".";
-		}
-		if(stupidBot.inputHTMLChecker(input))
-		{
-			answer += "Are you on the right program????";
-		}
-		if(stupidBot.twitterChecker(input))
-		{
-			answer += "Uh.. wrong program.....";
-		}
+			if(stupidBot.contentChecker(input))
+			{
+				answer += "\nYou know my special secret\n";
+			}
+			if(stupidBot.memeChecker(input))
+			{
+				answer += "\nI can has memes?\n";
+			}
+			if(stupidBot.politicalTopicChecker(input))
+			{
+				answer += "\nPolitics blah blah blah.";
+			}
+			if(!stupidBot.lengthChecker(answer))
+			{
+				answer += "Sorry, I don't know about " + input + ". ";
+			}
+			if(stupidBot.inputHTMLChecker(input))
+			{
+				answer += "Are you on the right program????";
+			}
+			if(stupidBot.twitterChecker(input))
+			{
+				answer += "Uh.. wrong program.....";
+			}
 		
-		int canBeRandom = (int) (Math.random() * 7);
-		if(canBeRandom % 7 == 0)
+			int canBeRandom = (int) (Math.random() * 7);
+			if(canBeRandom % 7 == 0)
+			{
+				answer += randomTopicGenerator();
+			}
+		}
+		else
 		{
-			answer += randomTopicGenerator();
+			chatView.displayMessage("Thank you for chatting with me :D");
+			System.exit(0);
 		}
 		
 		return answer;

@@ -10,8 +10,8 @@ public class ChatViewer
 	
 	public ChatViewer()
 	{
-		windowMessage = "Dogebot";
-		chatIcon = new ImageIcon(getClass().getResource("images/doge.jpg"));
+		windowMessage = "Chatbot";
+		chatIcon = new ImageIcon(getClass().getResource("images/expoint.png"));
 	}
 	public String collectResponse(String question)
 	{
