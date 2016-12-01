@@ -284,20 +284,41 @@ public class Chatbot
 	{
 		boolean inputHTML = false;
 		
-		if(currentInput.contains("<"))
+		if(currentInput.contains("<P>"))
 		{
-			int index = currentInput.indexOf("<") + 1;
+			inputHTML = true;
+		}
+		else if(currentInput.contains("<A HREF=\""))
+		{
+			int index = currentInput.indexOf("<A HREF=\"") + 9;
+			String sub = currentInput.substring(index);
 			
-			String HTMLTag = currentInput.substring(index, index + 1);
-			index += 1;
-			String sub = currentInput.substring(index, index + 1);
-			
-			if(sub.contains(">"))
+			if(sub.contains("\">"))
 			{
-				 int index2 = currentInput.indexOf(">") + 1;
-				 String sub2 = currentInput.substring(index2);
+				int index2 = sub.indexOf("\">");
+				String sub2 = sub.substring(index2);
+				
+				if(sub2.contains("</a>"))
+				{
+					inputHTML = true;
+				}
+			}
+		}
+		else if(currentInput.contains("<"))
+		{
+			String lowerCase = currentInput.toLowerCase();
+			
+			int openIndexStart = lowerCase.indexOf("<") + 1;
+			int openIndexClose = lowerCase.indexOf(">");
+			String HTMLTag = lowerCase.substring(openIndexStart, openIndexClose);
+			String sub = lowerCase.substring(openIndexClose + 1);
+			
+			if(sub.contains("<"))
+			{
+				 int index2 = sub.indexOf("<") + 1;
+				 String sub2 = lowerCase.substring(index2);
 				 
-				 if(sub2.contains("</" + HTMLTag + ">"));
+				 if(sub2.contains(HTMLTag + ">"));
 				 {
 					 inputHTML = true;
 				 }
