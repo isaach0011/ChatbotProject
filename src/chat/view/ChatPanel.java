@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 
+/*
+ * 
+ */
 public class ChatPanel extends JPanel
 {
 	private ChatController baseController;
@@ -35,6 +38,9 @@ public class ChatPanel extends JPanel
 		setupListeners();
 	}
 	
+	/*
+	 * 
+	 */
 	private void setupChatDisplay()
 	{
 		chatDisplay.setEditable(false);
@@ -43,6 +49,9 @@ public class ChatPanel extends JPanel
 		chatDisplay.setWrapStyleWord(true);
 	}
 	
+	/*
+	 * 
+	 */
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
@@ -53,6 +62,9 @@ public class ChatPanel extends JPanel
 		this.add(chatLabel);
 	}
 	
+	/*
+	 * 
+	 */
 	private void setupLayout()
 	{
 		baseLayout.putConstraint(SpringLayout.EAST, chatDisplay, -72, SpringLayout.EAST, this);
@@ -67,6 +79,9 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, chatLabel, 0, SpringLayout.WEST, chatDisplay);
 	}
 	
+	/*
+	 * 
+	 */
 	private void setupListeners()
 	{
 		chatButton.addActionListener(new ActionListener()

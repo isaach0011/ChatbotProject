@@ -4,12 +4,18 @@ import chat.model.Chatbot;
 import chat.view.ChatFrame;
 import chat.view.ChatViewer;
 
+/*
+ * 
+ */
 public class ChatController
 {
 	private Chatbot stupidBot;
 	private ChatViewer chatView;
 	private ChatFrame baseFrame;
 	
+	/*
+	 * 
+	 */
 	public ChatController()
 	{
 		stupidBot = new Chatbot("Chatbot");
@@ -17,6 +23,9 @@ public class ChatController
 		baseFrame = new ChatFrame(this);
 	}
 	
+	/*
+	 * 
+	 */
 	public void start()
 	{
 //		String response = chatView.collectResponse("What do you want to talk about today????");
@@ -28,6 +37,9 @@ public class ChatController
 //		}
 	}
 	
+	/*
+	 * 
+	 */
 	public String useChatbotCheckers(String input)
 	{
 		String answer = "";
@@ -73,6 +85,10 @@ public class ChatController
 		
 		return answer;
 	}
+	
+	/*
+	 * 
+	 */
 	private String randomTopicGenerator()
 	{
 		String randomTopic = "";
@@ -104,17 +120,15 @@ public class ChatController
 			default:
 				randomTopic = "NICE";
 				break;
-		}
-		
-		return randomTopic;
-			
+		}	
+		return randomTopic;		
 	}
 	
 	public Chatbot getChatbot()
 	{
 		return stupidBot;
 	}
-	
+
 	public ChatFrame getBaseFrame()
 	{
 		return baseFrame;

@@ -29,6 +29,9 @@ public class Chatbot
 		this.buildPoliticalTopicsList();
 	}
 	
+	/**
+	 * Adds items to memeslist for use in Chatbot.
+	 */
 	private void buildMemesList()
 	{
 		memesList.add("doge");
@@ -52,6 +55,9 @@ public class Chatbot
 		memesList.add("icup");
 	}
 	
+	/**
+	 * Adds items to politicalTopicList for use in Chatbot.
+	 */
 	private void buildPoliticalTopicsList()
 	{
 		politicalTopicList.add("Democrat");
@@ -134,8 +140,7 @@ public class Chatbot
 		}
 		return hasPoliticalTopic;
 	}
-	
-	
+
 	/**
 	 * Checks to see that the supplied String value is in the current memesList variable.
 	 * @param currentInput The supplied String to be checked.
@@ -201,6 +206,11 @@ public class Chatbot
 		this.content = content;
 	}
 	
+	/**
+	 * Checks to see if currentInput is keyboard mash.
+	 * @param currentInput The supplied string to be checked.
+	 * @return keyboardMash Returns whether the string is keyboard mashing.
+	 */
 	public boolean keyboardMashChecker(String currentInput)
 	{
 		boolean keyboardMash = false;
@@ -227,59 +237,12 @@ public class Chatbot
 		
 		return keyboardMash;
 	}
-
-	public boolean inputHTMLCheckers(String currentInput)
-	{
-		boolean inputHTML = false;
-		
-		if(currentInput.contains("<B>"))
-		{
-			int index = currentInput.indexOf("<B>") + 3;
-			String sub = currentInput.substring(index);
-			
-			if(sub.contains("</B>"))
-			{
-				inputHTML = true;
-			}
-		}
-		
-		else if(currentInput.contains("<I>"))
-		{
-			int index = currentInput.indexOf("<I>") + 3;
-			String sub = currentInput.substring(index);
-			
-			if(sub.contains("</i>"))
-			{
-				inputHTML = true;
-			}
-		}
-		
-		else if(currentInput.contains("<P>"))
-		{
-			inputHTML = true;
-		}
-		
-		else if(currentInput.contains("<A HREF=\""))
-		{
-			int index = currentInput.indexOf("<A HREF=\"") + 9;
-			String sub = currentInput.substring(index);
-			
-			if(sub.contains("\">"))
-			{
-				int index2 = sub.indexOf("\">");
-				String sub2 = sub.substring(index2);
-				
-				if(sub2.contains("</a>"))
-				{
-					inputHTML = true;
-				}
-			}
-		}
-		
-		
-		return inputHTML;
-	}
 	
+	/**
+	 * Checks if currentInput is HTML.
+	 * @param currentInput The supplied string to be checked.
+	 * @return inputHTML Returns if the string is HTML or not.
+	 */
 	public boolean inputHTMLChecker(String currentInput)
 	{
 		boolean inputHTML = false;
@@ -306,32 +269,80 @@ public class Chatbot
 		}
 		else if(currentInput.contains("<"))
 		{
-			String lowerCase = currentInput.toLowerCase();
+			String lower = currentInput.toLowerCase();
+			int openIndex1 = lower.indexOf("<") + 1;
+			String tag = "";
 			
-			int openIndexStart = lowerCase.indexOf("<") + 1;
-			int openIndexClose = lowerCase.indexOf(">");
-			String HTMLTag = lowerCase.substring(openIndexStart, openIndexClose);
-			String sub = lowerCase.substring(openIndexClose + 1);
-			
-			if(sub.contains("<"))
+			if(lower.contains(">"))
 			{
-				 int index2 = sub.indexOf("<") + 1;
-				 String sub2 = lowerCase.substring(index2);
+				 int openIndex2 = lower.indexOf(">");
+				 tag = lower.substring(openIndex1, openIndex2);
 				 
-				 if(sub2.contains(HTMLTag + ">"));
+				 String sub = lower.substring(openIndex2 + 1);
+						 
+				 if(sub.contains("</" + tag + ">")) 
 				 {
 					 inputHTML = true;
 				 }
 			}
 		}
 		
-		
+//		boolean inputHTML = false;
+//		
+//		if(currentInput.contains("<B>"))
+//		{
+//			int index = currentInput.indexOf("<B>") + 3;
+//			String sub = currentInput.substring(index);
+//			
+//			if(sub.contains("</B>"))
+//			{
+//				inputHTML = true;
+//			}
+//		}
+//		
+//		else if(currentInput.contains("<I>"))
+//		{
+//			int index = currentInput.indexOf("<I>") + 3;
+//			String sub = currentInput.substring(index);
+//			
+//			if(sub.contains("</i>"))
+//			{
+//				inputHTML = true;
+//			}
+//		}
+//		
+//		else if(currentInput.contains("<P>"))
+//		{
+//			inputHTML = true;
+//		}
+//		
+//		else if(currentInput.contains("<A HREF=\""))
+//		{
+//			int index = currentInput.indexOf("<A HREF=\"") + 9;
+//			String sub = currentInput.substring(index);
+//			
+//			if(sub.contains("\">"))
+//			{
+//				int index2 = sub.indexOf("\">");
+//				String sub2 = sub.substring(index2);
+//				
+//				if(sub2.contains("</a>"))
+//				{
+//					inputHTML = true;
+//				}
+//			}
+//		}
 		return inputHTML;
 	}
 	
+	/**
+	 * Check to see if the currentInput starts with a "#" or "@"
+	 * @param currentInput The supplied string to be checked.
+	 * @return isTwitter Returns whether currentInput is usable in Twitter.
+	 */
 	public boolean twitterChecker(String currentInput)
 	{
-		boolean twitter = false;
+		boolean isTwitter = false;
 		
 		if(currentInput.contains("#"))
 		{
@@ -342,7 +353,7 @@ public class Chatbot
 			{
 				if(sub.length() >= 1)
 				{
-					twitter = true;
+					isTwitter = true;
 				}
 			}
 		}
@@ -355,13 +366,19 @@ public class Chatbot
 			{
 				if (sub.length() >= 1)
 				{
-					twitter = true;
+					isTwitter = true;
 				}
 			}
 		}
 		
-		return twitter;
+		return isTwitter;
 	}
+	
+	/**
+	 * Checks if the currentInput says quit so that it can quit the program 
+	 * @param currentInput The supplied string to be checked.
+	 * @return quit Returns whether the user wants to quit or not.
+	 */
 	public boolean quitChecker(String currentInput)
 	{
 		boolean quit = false;

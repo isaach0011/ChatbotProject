@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import chat.controller.ChatController;
 import java.awt.Dimension;
 
+/*
+ * 
+ */
 public class ChatFrame extends JFrame
 {
 	
@@ -18,6 +21,9 @@ public class ChatFrame extends JFrame
 		setupFrame();
 	}
 	
+	/*
+	 * 
+	 */
 	private void setupFrame()
 	{
 		this.setContentPane(basePanel);
