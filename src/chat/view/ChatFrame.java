@@ -4,8 +4,10 @@ import javax.swing.JFrame;
 import chat.controller.ChatController;
 import java.awt.Dimension;
 
-/*
- * 
+/**
+ * Constructs the objects ChatController and ChatPanel.
+ * @author Isaac Hill
+ *
  */
 public class ChatFrame extends JFrame
 {
@@ -21,8 +23,8 @@ public class ChatFrame extends JFrame
 		setupFrame();
 	}
 	
-	/*
-	 * 
+	/**
+	 * Sets up the window with certain conditions.
 	 */
 	private void setupFrame()
 	{

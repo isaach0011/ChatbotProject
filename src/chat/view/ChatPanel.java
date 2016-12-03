@@ -9,8 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 
-/*
- * 
+/**
+ * Constructs the objects ChatController, SpringLayout, JTextArea, JTextField, JButton, and JLabel
+ * @author Isaac Hill
+ *
  */
 public class ChatPanel extends JPanel
 {
@@ -38,8 +40,8 @@ public class ChatPanel extends JPanel
 		setupListeners();
 	}
 	
-	/*
-	 * 
+	/**
+	 * Sets up the JTextField with certain conditions.
 	 */
 	private void setupChatDisplay()
 	{
@@ -49,8 +51,8 @@ public class ChatPanel extends JPanel
 		chatDisplay.setWrapStyleWord(true);
 	}
 	
-	/*
-	 * 
+	/**
+	 * Initializes all GUI components and adds them to the Frame.
 	 */
 	private void setupPanel()
 	{
@@ -62,8 +64,8 @@ public class ChatPanel extends JPanel
 		this.add(chatLabel);
 	}
 	
-	/*
-	 * 
+    /**
+	 * Dumps auto-generated code from window builder.
 	 */
 	private void setupLayout()
 	{
@@ -79,8 +81,8 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, chatLabel, 0, SpringLayout.WEST, chatDisplay);
 	}
 	
-	/*
-	 * 
+	/**
+	 * Sets actions for buttons when they are pressed.
 	 */
 	private void setupListeners()
 	{

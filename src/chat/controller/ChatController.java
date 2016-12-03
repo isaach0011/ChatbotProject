@@ -4,8 +4,10 @@ import chat.model.Chatbot;
 import chat.view.ChatFrame;
 import chat.view.ChatViewer;
 
-/*
- * 
+/**
+ * Constructs the objects Chatbot, ChatViewer, and ChatFrame.
+ * @author Isaac Hill
+ *
  */
 public class ChatController
 {
@@ -13,9 +15,6 @@ public class ChatController
 	private ChatViewer chatView;
 	private ChatFrame baseFrame;
 	
-	/*
-	 * 
-	 */
 	public ChatController()
 	{
 		stupidBot = new Chatbot("Chatbot");
@@ -23,8 +22,8 @@ public class ChatController
 		baseFrame = new ChatFrame(this);
 	}
 	
-	/*
-	 * 
+	/**
+	 * Currently does nothing.
 	 */
 	public void start()
 	{
@@ -37,8 +36,10 @@ public class ChatController
 //		}
 	}
 	
-	/*
-	 * 
+	/**
+	 * Responds when the supplied string completes a checker.
+	 * @param input The supplied user input.
+	 * @return answer Returns the answer the bot will give the user after set checkers is completed.
 	 */
 	public String useChatbotCheckers(String input)
 	{
@@ -86,8 +87,9 @@ public class ChatController
 		return answer;
 	}
 	
-	/*
-	 * 
+	/**
+	 * Randomly picks a topic whenever the user types anything.
+	 * @return randomTopic Returns if and what the randomTopic is or if it is said.
 	 */
 	private String randomTopicGenerator()
 	{
