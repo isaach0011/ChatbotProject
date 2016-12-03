@@ -392,9 +392,6 @@ public class Chatbot
 	}
 }
 
-//```Java
-//{paste code here}
-//```
 
 
 
