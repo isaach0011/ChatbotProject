@@ -126,6 +126,17 @@ public class ChatController
 		return randomTopic;		
 	}
 	
+	public void handleErrors(Exception currentException)
+	{
+		chatView.displayMessage("An error has occurred. Details provided next.");
+		chatView.displayMessage(currentException.getMessage());
+	}
+	
+	public ChatViewer getPopup()
+	{
+		return chatView;
+	}
+	
 	public Chatbot getChatbot()
 	{
 		return stupidBot;
