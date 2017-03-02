@@ -59,10 +59,6 @@ public class ChatController
 			{
 				answer += "\nPolitics blah blah blah.";
 			}
-			if(!stupidBot.lengthChecker(answer))
-			{
-				answer += "Sorry, I don't know about " + input + ". ";
-			}
 			if(stupidBot.inputHTMLChecker(input))
 			{
 				answer += "Are you on the right program????";
@@ -70,6 +66,10 @@ public class ChatController
 			if(stupidBot.twitterChecker(input))
 			{
 				answer += "Uh.. wrong program.....";
+			}
+			if(!stupidBot.lengthChecker(answer))
+			{
+				answer += "Sorry, I don't know about " + input + ". ";
 			}
 		
 			int canBeRandom = (int) (Math.random() * 7);

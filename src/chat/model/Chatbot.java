@@ -107,11 +107,6 @@ public class Chatbot
 	{
 		boolean hasContent = false;
 		
-		String temp = "⎲";
-		String temp1 = "⎳";
-		System.out.println(temp);
-		System.out.println(temp1);
-		
 		if (currentInput.toLowerCase().contains(content.toLowerCase()))
 		{
 			hasContent = true;
