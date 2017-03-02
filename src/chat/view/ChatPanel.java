@@ -122,5 +122,37 @@ public class ChatPanel extends JPanel
 				chatField.setText("");
 			}
 		});
+		
+		searchTwitterButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
+		
+		sendTwitterButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
+		
+		saveButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
+		
+		loadButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
 	}
 }
