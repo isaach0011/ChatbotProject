@@ -1,5 +1,6 @@
 package chat.controller;
 
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +20,10 @@ public class FileController
 			}
 			else
 			{
-				String saveName = "derp derp derp";
+				String saveName = "Chats";
+				saveName += LocalDateTime.now().getDayOfWeek().name();
+				saveName += " at ";
+				saveName += LocalDateTime.now().getHour() + "-" + LocalDateTime.now().getMinute();
 				saveFile = new File(saveName + ".txt");
 			}
 			FileWriter saveFileWriter = new FileWriter(saveFile);
@@ -35,6 +39,27 @@ public class FileController
 	
 	public static String readFile(ChatController baseController, String fileName)
 	{
-		return "";
+		String fileContents = "";
+		
+		try
+		{
+			Scanner fileReader = new Scanner(new File(fileName));
+			while(fileReader.hasNextLine())
+			{
+				fileContents += fileReader.nextLine();
+				fileContents += "\n";
+			}
+			fileReader.close();
+		}
+		catch(IOException someIOError)
+		{
+			baseController.handleErrors(someIOError);
+		}
+		catch(NullPointerException fileError)
+		{
+			baseController.handleErrors(fileError);
+		}
+		
+		return fileContents;
 	}
 }

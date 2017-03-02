@@ -1,6 +1,7 @@
 package chat.view;
 
 import chat.controller.ChatController;
+import chat.controller.FileController;
 
 import javax.swing.*;
 
@@ -28,6 +29,7 @@ public class ChatPanel extends JPanel
 	private JButton saveButton;
 	private JButton loadButton;
 	private JLabel chatLabel;
+	private JScrollPane chatPane;
 	
 	public ChatPanel(ChatController baseController)
 	{
@@ -35,15 +37,15 @@ public class ChatPanel extends JPanel
 		this.baseController = baseController;
 		baseLayout = new SpringLayout();
 		chatDisplay = new JTextArea(20, 65);		
-		chatField = new JTextField(60);		
+		chatField = new JTextField(60);				
 		chatButton = new JButton("Chat");				
-		chatLabel = new JLabel("Chatbot");		
-		searchTwitterButton = new JButton("Search Twitter");		
-		sendTwitterButton = new JButton("Send Tweet");		
-		saveButton = new JButton("Save");				
-		loadButton = new JButton("Load");
+		chatLabel = new JLabel("Chatbot");	
+		chatPane = new JScrollPane();		
+		searchTwitterButton = new JButton("Search Twitter");				
+		sendTwitterButton = new JButton("Send Tweet");				
+		saveButton = new JButton("Save");
+		loadButton = new JButton("Load");		
 		
-
 		setupChatDisplay();
 		setupPanel();
 		setupLayout();
@@ -59,6 +61,9 @@ public class ChatPanel extends JPanel
 		chatDisplay.setEnabled(false);
 		chatDisplay.setLineWrap(true);
 		chatDisplay.setWrapStyleWord(true);
+		chatPane.setViewportView(chatDisplay);
+		chatPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		chatPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	}
 	
 	/**
@@ -72,7 +77,7 @@ public class ChatPanel extends JPanel
 		
 		chatLabel.setFont(new Font("BigNoodleTitling", Font.ITALIC, 50));
 		
-		this.add(chatDisplay);
+		this.add(chatPane);
 		this.add(chatButton);
 		this.add(searchTwitterButton);
 		this.add(sendTwitterButton);
@@ -87,22 +92,23 @@ public class ChatPanel extends JPanel
 	 */
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.NORTH, loadButton, 0, SpringLayout.NORTH, sendTwitterButton);
-		baseLayout.putConstraint(SpringLayout.WEST, loadButton, 0, SpringLayout.WEST, saveButton);
-		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 252, SpringLayout.EAST, saveButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, saveButton, 0, SpringLayout.NORTH, chatButton);
-		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, chatField);
-		baseLayout.putConstraint(SpringLayout.NORTH, sendTwitterButton, 15, SpringLayout.SOUTH, searchTwitterButton);
-		baseLayout.putConstraint(SpringLayout.EAST, sendTwitterButton, 0, SpringLayout.EAST, chatDisplay);
-		baseLayout.putConstraint(SpringLayout.NORTH, searchTwitterButton, 0, SpringLayout.NORTH, chatButton);
-		baseLayout.putConstraint(SpringLayout.EAST, searchTwitterButton, 0, SpringLayout.EAST, chatDisplay);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatDisplay, 5, SpringLayout.SOUTH, chatLabel);
+		
+		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 5, SpringLayout.SOUTH, chatLabel);
 		baseLayout.putConstraint(SpringLayout.NORTH, chatLabel, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, chatLabel, 10, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatButton, 45, SpringLayout.SOUTH, chatField);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatField, 6, SpringLayout.SOUTH, chatDisplay);
-		baseLayout.putConstraint(SpringLayout.EAST, chatField, -82, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, chatDisplay, -57, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, sendTwitterButton, 0, SpringLayout.NORTH, loadButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, loadButton, 27, SpringLayout.SOUTH, saveButton);
+		baseLayout.putConstraint(SpringLayout.WEST, loadButton, 0, SpringLayout.WEST, saveButton);
+		baseLayout.putConstraint(SpringLayout.EAST, chatPane, -57, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, searchTwitterButton, 0, SpringLayout.NORTH, saveButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, saveButton, 24, SpringLayout.SOUTH, chatField);
+		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, chatField);
+		baseLayout.putConstraint(SpringLayout.EAST, sendTwitterButton, 0, SpringLayout.EAST, searchTwitterButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatButton, 0, SpringLayout.NORTH, searchTwitterButton);
+		baseLayout.putConstraint(SpringLayout.EAST, chatButton, -214, SpringLayout.WEST, searchTwitterButton);
+		baseLayout.putConstraint(SpringLayout.EAST, searchTwitterButton, 0, SpringLayout.EAST, chatField);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatField, 6, SpringLayout.SOUTH, chatPane);
+		baseLayout.putConstraint(SpringLayout.WEST, chatField, 85, SpringLayout.WEST, this);
 		
 	}
 	
@@ -115,10 +121,19 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				String userWords = chatField.getText();
-				String botResponse = baseController.useChatbotCheckers(userWords);
+//				String userWords = chatField.getText();
+//				String botResponse = baseController.useChatbotCheckers(userWords);
+//				
+//				chatDisplay.setText("You said: " + userWords + "\n" + "Chatbot said: " + botResponse);
+//				chatField.setText("");
 				
-				chatDisplay.setText("You said: " + userWords + "\n" + "Chatbot said: " + botResponse);
+				String personWords = chatField.getText();
+				String chatbotResponse = baseController.useChatbotCheckers(personWords);
+				String currentText = chatDisplay.getText();
+				
+				chatDisplay.setText("You said: " + personWords+ "\n" + "Chatbot says: " + chatbotResponse + "\n" + currentText);;
+				chatDisplay.setCaretPosition(0);
+				
 				chatField.setText("");
 			}
 		});
@@ -143,7 +158,9 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
+				String fileName = chatField.getText();
 				
+				FileController.saveFile(baseController, fileName.trim(), chatDisplay.getText());
 			}
 		});
 		
@@ -151,7 +168,9 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				
+				String fileName = chatField.getText() + ".txt";
+				String saved = FileController.readFile(baseController, fileName);
+				chatDisplay.setText(saved);
 			}
 		});
 	}
