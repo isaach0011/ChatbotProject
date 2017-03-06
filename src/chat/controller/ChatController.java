@@ -3,6 +3,7 @@ package chat.controller;
 import chat.model.Chatbot;
 import chat.view.ChatFrame;
 import chat.view.ChatViewer;
+import chat.model.CTECTwitter;
 
 /**
  * Constructs the objects Chatbot, ChatViewer, and ChatFrame.
@@ -14,10 +15,12 @@ public class ChatController
 	private Chatbot stupidBot;
 	private ChatViewer chatView;
 	private ChatFrame baseFrame;
+	private CTECTwitter tweetBot;
 	
 	public ChatController()
 	{
 		stupidBot = new Chatbot("Chatbot");
+		tweetBot = new CTECTwitter(this);
 		chatView = new ChatViewer();
 		baseFrame = new ChatFrame(this);
 	}
@@ -59,10 +62,6 @@ public class ChatController
 			{
 				answer += "\nPolitics blah blah blah.";
 			}
-			if(!stupidBot.lengthChecker(answer))
-			{
-				answer += "Sorry, I don't know about " + input + ". ";
-			}
 			if(stupidBot.inputHTMLChecker(input))
 			{
 				answer += "Are you on the right program????";
@@ -70,6 +69,10 @@ public class ChatController
 			if(stupidBot.twitterChecker(input))
 			{
 				answer += "Uh.. wrong program.....";
+			}
+			if(!stupidBot.lengthChecker(answer))
+			{
+				answer += "Sorry, I don't know about " + input + ". ";
 			}
 		
 			int canBeRandom = (int) (Math.random() * 7);
@@ -124,6 +127,22 @@ public class ChatController
 				break;
 		}	
 		return randomTopic;		
+	}
+	
+	public void handleErrors(Exception currentException)
+	{
+		chatView.displayMessage("An error has occurred. Details provided next.");
+		chatView.displayMessage(currentException.getMessage());
+	}
+	
+	public void useTwitter(String text)
+	{
+		tweetBot.sendTweet(text);
+	}
+	
+	public ChatViewer getPopup()
+	{
+		return chatView;
 	}
 	
 	public Chatbot getChatbot()
