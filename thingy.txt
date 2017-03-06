@@ -1,0 +1,12 @@
+You said: doge
+Chatbot says: 
+I can has memes?
+...
+You said: asdfasd
+Chatbot says: Sorry, I don't know about asdfasd. 
+You said: fsgsdfg
+Chatbot says: Sorry, I don't know about fsgsdfg. 
+You said: asdf
+Chatbot says: Sorry, I don't know about asdf. 
+You said: hello
+Chatbot says: Sorry, I don't know about hello. NEATO
