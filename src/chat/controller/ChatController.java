@@ -52,15 +52,15 @@ public class ChatController
 		{
 			if(stupidBot.contentChecker(input))
 			{
-				answer += "\nYou know my special secret\n";
+				answer += "You know my special secret\n";
 			}
 			if(stupidBot.memeChecker(input))
 			{
-				answer += "\nI can has memes?\n";
+				answer += "I can has memes?";
 			}
 			if(stupidBot.politicalTopicChecker(input))
 			{
-				answer += "\nPolitics blah blah blah.";
+				answer += "Politics blah blah blah.";
 			}
 			if(stupidBot.inputHTMLChecker(input))
 			{
@@ -138,6 +138,14 @@ public class ChatController
 	public void useTwitter(String text)
 	{
 		tweetBot.sendTweet(text);
+	}
+	
+	public String searchTwitter(String name)
+	{
+		String results = "The top word from user" + name + " is ";
+		results += tweetBot.getMostCommonWord(name);
+		
+		return results;
 	}
 	
 	public ChatViewer getPopup()

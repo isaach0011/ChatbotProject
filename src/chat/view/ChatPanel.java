@@ -131,7 +131,7 @@ public class ChatPanel extends JPanel
 				String chatbotResponse = baseController.useChatbotCheckers(personWords);
 				String currentText = chatDisplay.getText();
 				
-				chatDisplay.setText("You said: " + personWords+ "\n" + "Chatbot says: " + chatbotResponse + "\n" + currentText);;
+				chatDisplay.setText("You said: " + personWords+ "\n" + "Chatbot says: " + chatbotResponse + "\n" + currentText);
 				chatDisplay.setCaretPosition(0);
 				
 				chatField.setText("");
@@ -142,7 +142,8 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				
+				String username = chatField.getText();
+				chatDisplay.append(baseController.searchTwitter(username);
 			}
 		});
 		
@@ -173,5 +174,37 @@ public class ChatPanel extends JPanel
 				chatDisplay.setText(saved);
 			}
 		});
+		
+		chatField.addActionListener(new ActionListener()	
+		{
+			public void actionPerformed(ActionEvent enterPress)
+			{
+				scrollTextUp();
+			}
+		});
+	}
+	
+	private void scrollTextUp()
+	{
+		String personWords = chatField.getText();
+		String chatbotResponse = baseController.useChatbotCheckers(personWords);
+		String currentText = chatDisplay.getText();
+		
+		chatDisplay.setText("You said: " + personWords+ "\n" + "Chatbot says: " + chatbotResponse + "\n" + currentText);
+		chatDisplay.setCaretPosition(0);
+		
+		chatField.setText("");
+	}
+	
+	private void scrollTextDown()
+	{
+		String personWords = chatField.getText();
+		String chatbotResponse = baseController.useChatbotCheckers(personWords);
+		String currentText = chatDisplay.getText();
+		
+		chatDisplay.setText("You said: " + personWords+ "\n" + "Chatbot says: " + chatbotResponse + "\n" + currentText);
+		chatDisplay.setCaretPosition(chatDisplay.getCaretPosition());
+		
+		chatField.setText("");
 	}
 }
