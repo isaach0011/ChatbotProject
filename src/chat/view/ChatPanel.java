@@ -2,15 +2,12 @@ package chat.view;
 
 import chat.controller.ChatController;
 import chat.controller.FileController;
-
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
 
 /**
  * Constructs the objects ChatController, SpringLayout, JTextArea, JTextField, JButton, and JLabel
@@ -143,7 +140,7 @@ public class ChatPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				String username = chatField.getText();
-				chatDisplay.append(baseController.searchTwitter(username);
+				chatDisplay.append(baseController.searchTwitter(username));
 			}
 		});
 		
