@@ -200,7 +200,7 @@ public class CTECTwitter
 		
 		Query query = new Query("School");
 		query.setCount(100);
-		query.setGeoCode(new GeoLocation(40.5169, 111.8702), 5, Query.KILOMETERS);
+		query.setGeoCode(new GeoLocation(40.5169, -111.8702), 500, Query.KILOMETERS);
 		query.setSince("2017-01-10");
 		try
 		{
