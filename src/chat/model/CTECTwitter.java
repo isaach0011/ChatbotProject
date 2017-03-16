@@ -8,7 +8,11 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
+import twitter4j.GeoLocation;
 import twitter4j.Paging;
+import twitter4j.Query;
+import twitter4j.QueryResult;
+
 
 public class CTECTwitter
 {
@@ -167,10 +171,52 @@ public class CTECTwitter
 				mostPopularIndex = index;
 				topWord = tweetedWords.get(mostPopularIndex);
 			}
+			currentPopularity = 0;
 		}
 		results += topWord + ", and it occurred " + popularCount + "times.";
 		results += "\nThat means it has a percentage of " + ((double)popularCount)/tweetedWords.size() + "%. ";
 		
 		return results;
+	}
+	
+	private String removePunctuation(String currentString)
+	{
+		String punctuation = ".,':;\"(){}[]<>-";
+		
+		String scrubbedString = "";
+		for(int i = 0; i < currentString.length(); i++)
+		{
+			if(punctuation.indexOf(currentString.charAt(i)) == -1)
+			{
+				scrubbedString += currentString.charAt(i);
+			}
+		}
+		return scrubbedString;
+	}
+	
+	public String investigation()
+	{
+		String results = "";
+		
+		Query query = new Query("School");
+		query.setCount(100);
+		query.setGeoCode(new GeoLocation(40.5169, 111.8702), 5, Query.KILOMETERS);
+		query.setSince("2017-01-10");
+		try
+		{
+			QueryResult result = twitterBot.search(query);
+			results += "Count : " + result.getTweets().size() + "\n";
+			for(Status tweet : result.getTweets())
+			{
+				results += "@" + tweet.getUser().getName() + ": " + tweet.getText() + "\n";
+			}
+		}
+		catch(TwitterException error)
+		{
+			error.printStackTrace();
+		}
+		
+		return results;
+		
 	}
 }
