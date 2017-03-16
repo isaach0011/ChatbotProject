@@ -140,9 +140,9 @@ public class ChatController
 		tweetBot.sendTweet(text);
 	}
 	
-	public String searchTwitter(String name)
+	public String searchTwitter(String word)
 	{
-		String results = tweetBot.investigation();
+		String results = tweetBot.investigation(word);
 		
 		return results;
 	}

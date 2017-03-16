@@ -194,13 +194,13 @@ public class CTECTwitter
 		return scrubbedString;
 	}
 	
-	public String investigation()
+	public String investigation(String searchedTerm)
 	{
 		String results = "";
 		
-		Query query = new Query("School");
+		Query query = new Query(searchedTerm);
 		query.setCount(100);
-		query.setGeoCode(new GeoLocation(40.5169, -111.8702), 500, Query.KILOMETERS);
+		query.setGeoCode(new GeoLocation(40.5169, -111.8702), 5, Query.KILOMETERS);
 		query.setSince("2017-01-10");
 		try
 		{
